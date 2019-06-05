@@ -1,2 +1,2 @@
 # TelegramChatOrganizer
-Telegram-Bot which reacts to specific commands in the chat
+Telegram-Bot which saves messages from the chat into a database via command
