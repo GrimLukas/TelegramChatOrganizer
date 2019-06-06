@@ -13,7 +13,7 @@ const insertOne = (document) => {
         }
         
         const db = client.db(dbName);
-        db.collection('Archive').insertOne(document);
+        db.collection('Messages').insertOne(document);
     });
 }
 
@@ -26,7 +26,7 @@ const read = (collect, callback) => {
         }
 
         const db = client.db(dbName);
-        const collection = db.collection('Archive');
+        const collection = db.collection('Messages');
         collection.find({}).toArray((err, res) => {
             callback(res);
         });
@@ -36,7 +36,7 @@ const read = (collect, callback) => {
 const update = (filter, action) => {
     client.connect((err) => {
         const db = client.db(dbName);
-        const collection = db.collection('Archive');
+        const collection = db.collection('Messages');
         collection.updateMany(filter, action);
     });
 }
@@ -44,7 +44,7 @@ const update = (filter, action) => {
 const del = (filter) => {
     client.connect((err) => {
         const db = client.db(dbName);
-        const collection = db.collection('Archive');
+        const collection = db.collection('Messages');
         collection.deleteMany(filter);
     });
 }
@@ -53,7 +53,6 @@ const close = () => {
 }
 
 module.exports = {
-    init,
     insertOne,
     read,
     update,

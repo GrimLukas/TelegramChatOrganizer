@@ -1,0 +1,22 @@
+{
+  "name": "telegramchatorganizer",
+  "version": "1.0.0",
+  "description": "Telegram-Bot which saves messages from the chat into a database via command",
+  "main": "DbUtils.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrimLukas/TelegramChatOrganizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrimLukas/TelegramChatOrganizer/issues"
+  },
+  "homepage": "https://github.com/GrimLukas/TelegramChatOrganizer#readme",
+  "dependencies": {
+    "mongo": "^0.1.0"
+  }
+}
