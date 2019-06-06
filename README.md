@@ -1,2 +1,3 @@
 # TelegramChatOrganizer
-Telegram-Bot which saves messages from the chat into a database via command
+Telegram-Bot which saves messages from a chat into a database via command
+Archived Chats will be shown on a static HTML-Website (localhost:27017 at the moment)
