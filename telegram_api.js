@@ -28,7 +28,7 @@ const MongoClient = require('mongodb').MongoClient;
     response.on('end', () => {
         let update = JSON.parse(data); //parse into JSON to access specific fields
         var nachricht;
-        update.result.forEach(message => {
+        update.result.forEach(message => {      //takes the chat name, message-id,-user,-date and -text out of the JSON file and puts it into 'nachricht'
             nachricht={
             chat_name: message.message.chat.title,
             msg_id: message.message.message_id,
