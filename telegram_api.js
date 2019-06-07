@@ -30,6 +30,7 @@ const MongoClient = require('mongodb').MongoClient;
         var nachricht;
         update.result.forEach(message => {
             nachricht={
+            chat_name: message.message.chat.title,
             msg_id: message.message.message_id,
             msg_user: message.message.from.username,
             msg_date: new Date(1000*message.message.date),  
