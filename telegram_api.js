@@ -11,6 +11,7 @@ const url = 'mongodb://localhost:27017';
 // Database Name
 var db;
 const dbName = 'Archive';
+const datenbank = require('./DbUtils');
 
 // Create a new MongoClient
 const client = new MongoClient(url);
@@ -21,7 +22,7 @@ client.connect(function (err) {
     console.log("Connected successfully to server");
 
     db = client.db(dbName);
-    setInterval(getUpdates, 5000);  //alle 5 Sekunden in Datenbank speichern
+    setInterval(getUpdates, 300000);  //alle 5 Sekunden in Datenbank speichern
 
 })
             
@@ -44,8 +45,9 @@ function getUpdates() {
                     msg_date: new Date(1000 * message.message.date),
                     msg_text: message.message.text
                 };
-                db.collection('Messages').insertOne(JSON.parse(JSON.stringify(nachricht))); //nachricht gets saved into Database
+                db.collection('Messages').insertOne(JSON.parse(JSON.stringify(nachricht)));
             })
+            client.close();
         })
     })
 }
@@ -53,16 +55,22 @@ function getUpdates() {
 
 
 app.get('/', function(request, response){
-    page = '<html> <head><title> ChatOrganizerBot </title>  <meta charset="utf-8"> <link rel="stylesheet" type="text/css" href="style.css"></head><body><h3> Chat Log </h3><section> ';
-    db.read.forEach(message => {      //takes the chat name, message-id,-user,-date and -text out of the JSON file and puts it into 'nachricht'
-    page += 'chat name: ' + message.chat_name +
-        'message id: ' + message.message_id +
-        'message user: ' + message.msg_user +
-        'message date: ' + message.msg_date +
-        'message text: ' + message.msg_text;
-    })
-    page += '</section> </body> </html>';
+    var page = '';
+    page = '<h3> Chat Log </h3><section> ';
+    datenbank.read({chat_name: 'Bot_Test.png'}, (data) => {
+        data.forEach(message => {      
+        page += 'chat name: ' + message.chat_name +
+        ' message id: ' + message.msg_id +
+        ' message user: ' + message.msg_user +
+        ' message date: ' + message.msg_date +
+        ' message text: ' + message.msg_text;
+        })
+      })
+    page += '</section>';
+    console.log(page);
+    response.setHeader('Content-Type', 'text/html');
     response.write(page);
+    response.end();
 });
 
 app.listen(3000, function () {
