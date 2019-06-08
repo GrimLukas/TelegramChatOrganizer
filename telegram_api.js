@@ -3,6 +3,7 @@ const request = require('https');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const express = require('express');
+const app = express();
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
@@ -21,7 +22,7 @@ client.connect(function (err) {
 
     db = client.db(dbName);
     setInterval(getUpdates, 5000);  //alle 5 Sekunden in Datenbank speichern
-    
+
 })
             
 function getUpdates() {
@@ -48,3 +49,11 @@ function getUpdates() {
         })
     })
 }
+
+app.get('/', function(request, response){
+    response.sendFile(__dirname + '/public/Webseite.html');
+});
+
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!');
+  });

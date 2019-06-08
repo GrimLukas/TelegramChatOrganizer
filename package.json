@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GrimLukas/TelegramChatOrganizer#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mongo": "^0.1.0"
   }
 }
