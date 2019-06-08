@@ -56,21 +56,26 @@ function getUpdates() {
 
 app.get('/', function(request, response){
     var page = '';
-    page = '<h3> Chat Log </h3><section> ';
+    page = '<html><head><title> ChatOrganizerBot </title><meta charset="utf-8"> <link rel="stylesheet" type="text/css" href="./style.css"></head><body></body><h3> Chat Log </h3><section> ';
+
     datenbank.read({chat_name: 'Bot_Test.png'}, (data) => {
+        let index = 0;
         data.forEach(message => {      
-        page += 'chat name: ' + message.chat_name +
-        ' message id: ' + message.msg_id +
-        ' message user: ' + message.msg_user +
-        ' message date: ' + message.msg_date +
-        ' message text: ' + message.msg_text;
+        page += '<br> chat name: ' + message.chat_name +
+        '<br> message id: ' + message.msg_id +
+        '<br> message user: ' + message.msg_user +
+        '<br> message date: ' + message.msg_date +
+        '<br> message text: ' + message.msg_text + '<br>';
+        if(index === data.length-1)
+        {
+            page += '</section> </body> </html>';
+            response.setHeader('Content-Type', 'text/html');
+            response.write(page);
+            response.end();
+        }
+        index++;
         })
       })
-    page += '</section>';
-    console.log(page);
-    response.setHeader('Content-Type', 'text/html');
-    response.write(page);
-    response.end();
 });
 
 app.listen(3000, function () {
