@@ -50,8 +50,19 @@ function getUpdates() {
     })
 }
 
+
+
 app.get('/', function(request, response){
-    response.sendFile(__dirname + '/public/Webseite.html');
+    page = '<html> <head><title> ChatOrganizerBot </title>  <meta charset="utf-8"> <link rel="stylesheet" type="text/css" href="style.css"></head><body><h3> Chat Log </h3><section> ';
+    db.read.forEach(message => {      //takes the chat name, message-id,-user,-date and -text out of the JSON file and puts it into 'nachricht'
+    page += 'chat name: ' + message.chat_name +
+        'message id: ' + message.message_id +
+        'message user: ' + message.msg_user +
+        'message date: ' + message.msg_date +
+        'message text: ' + message.msg_text;
+    })
+    page += '</section> </body> </html>';
+    response.write(page);
 });
 
 app.listen(3000, function () {
