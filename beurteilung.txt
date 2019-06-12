@@ -1,0 +1,22 @@
+Positiv:
+Ihr habt euch daran gewagt etwas ganz anderes zu machen (mit der Telegram API)
+Ihr habt euch selbst in die MongoDB eingelesen
+
+Negativ:
+Ich kann das nicht testen.
+Selbst die '/' Route liefert mir die Fehlermeldung:
+  the options [servers] is not supported
+  the options [caseTranslate] is not supported
+
+Die statische Seite (Webseite.html) wird nirgends eingebunden
+
+Ihr habt keinen Client gebaut, der mir irgendetwas zeigt.
+Der Server macht erst nach 5 Minuten das erste Update.
+
+Ihr habt Express nicht gerade ausgereizt - für die eine Route (get auf '/') hättet ihr auch das core modul 'http' nehmen können.
+
+Es ist trotz allem ein schönes Projekt.
+
+Beurteilung:
+Farcher: 2
+Fletzer: 2
